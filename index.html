@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head 
+         content must come *after* these tags -->
+        <title>Teju games</title>    
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <!-- End Bootstrap CDN -->
+        <!-- JQuery CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- End JQuery CDN -->
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="main.css">
+
+    </head>
+    <body>
+      
+        <!-- heading section-->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="font-size: 1rem;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://www.karthiksuri.com/quiz">Charts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="http://www.karthiksuri.com/teju">Numbers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://www.tableofwords.com">Words</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://karthiksuri.com/animalquiz">Animal Quiz</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="container-fluid text-center" style="background-color: bisque;">                  
+          <div class="row">  
+            <div class="col py-3">
+              <h4>Adding and subtracting numbers!</h4>
+            </div>              
+          </div>
+        </div>
+        <!-- Section where stickers appear -->
+        <div class="container-fluid text-center mt-3">                  
+          <div class="row">
+            <div class="col">
+              <div id="sticker" style="background-color: white;">
+              </div>              
+            </div>
+        </div>    
+          
+        <!-- Inputs and events -->
+
+        <div class="container px-4">
+
+          <!-- Multiplication row -->
+          <div class="row justify-content-center" style="color:rgb(5, 138, 82)">Multiply</div>
+          <br>
+
+          <div class="row align-items-center">
+            <div class="col" id="no7"></div>
+            <div class="col">x</div>
+            <div class="col" id="no8"></div>
+            <div class="col">=</div>
+            <input class="col " type="number" id="numinput3" name="display"></input>
+            <div class="col h4 text-center" id="no9">Let's see if you are right</div>
+            <button type="button" class="col btn btn-warning btn-md m-4" id="check3" disabled="true">Check</button>
+            <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
+          </div> 
+          <br>
+          <br>
+
+          <!-- Addition row -->
+          <div class="row justify-content-center" style="color:blueviolet">Add</div>
+          <br>
+
+          <div class="row align-items-center">
+              <div class="col" id="no1"></div>
+              <div class="col">+</div>
+              <div class="col" id="no2"></div>
+              <div class="col">=</div>
+              <input class="col " type="number" id="numinput" name="display"></input>
+              <div class="col h4 text-center" id="no3">Let's see if you are right</div>
+              <button type="button" class="col btn btn-warning btn-md m-4" id="check" disabled="true">Check</button>
+              <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
+          </div>
+
+          <br>
+          <br>
+
+          <!-- Subtraction row -->
+          <div class="row justify-content-center" style="color:rgb(226, 162, 43)">Subtract</div>
+          <br>
+
+          <div class="row align-items-center">
+            <div class="col" id="no4"></div>
+            <div class="col">-</div>
+            <div class="col" id="no5"></div>
+            <div class="col">=</div>
+            <input class="col " type="number" id="numinput2" name="display"></input>
+            <div class="col h4 text-center" id="no6">Let's see if you are right</div>
+            <button type="button" class="col btn btn-warning btn-md m-4" id="check2" disabled="true">Check</button>
+            <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
+          </div> 
+          <br>
+          <br>
+          
+        <script>
+          //function to return random numbers within a range
+          function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+          }
+
+          // sets the two numbers for multiplication using random method 
+          document.querySelector("#no7").innerHTML = getRandomInt(5,20);
+          var no7 = document.querySelector("#no7").innerHTML;
+          document.querySelector("#no8").innerHTML = getRandomInt(1,10);
+          var no8 = document.querySelector("#no8").innerHTML;
+          
+          // sets the two numbers for addition using random method 
+          document.querySelector("#no1").innerHTML = getRandomInt(5,30);
+          var no1 = document.querySelector("#no1").innerHTML;
+          document.querySelector("#no2").innerHTML = getRandomInt(15,50);
+          var no2 = document.querySelector("#no2").innerHTML;
+          
+          // sets the two numbers for subtraction using random method 
+          document.querySelector("#no4").innerHTML = getRandomInt(25,50);
+          var no4 = document.querySelector("#no4").innerHTML;
+          document.querySelector("#no5").innerHTML = getRandomInt(5,20);;
+          var no5 = document.querySelector("#no5").innerHTML;
+
+          // resets the numbers for math operations using random method
+          function tryAnother(){
+            // Disabling check when no input
+            $('#numinput').prop("disabled",false);
+            $('#numinput2').prop("disabled",false);
+            $('#numinput3').prop("disabled",false);
+
+            // //Multiplication resets
+            $("#check3").attr("disabled", true);    
+            $("#no9").css('font-size','0.5em');
+            document.querySelector("#no7").innerHTML = getRandomInt(5,20);
+            no7 = document.getElementById("no7").innerHTML;
+            document.getElementById("no8").innerHTML = getRandomInt(1,10);;
+            no8 = document.getElementById("no8").innerHTML;
+            document.querySelector('#numinput3').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
+            document.querySelector('#no9').innerHTML = "Let's see if you are right";
+
+            // //Addition resets
+            $("#check").attr("disabled", true);
+            $("#no3").css('font-size','0.5em');
+            document.querySelector("#no1").innerHTML = getRandomInt(5,30);
+            no1 = document.getElementById("no1").innerHTML;
+            document.getElementById("no2").innerHTML = getRandomInt(15,50);;
+            no2 = document.getElementById("no2").innerHTML;
+            document.querySelector('#numinput').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
+            document.querySelector('#no3').innerHTML = "Let's see if you are right";
+            
+            //Subtraction resets
+            $("#check2").attr("disabled", true);  
+            $("#no6").css('font-size','0.5em');
+            document.querySelector("#no4").innerHTML = getRandomInt(25,50);
+            no4 = document.getElementById("no4").innerHTML;
+            document.getElementById("no5").innerHTML = getRandomInt(5,20);;
+            no5 = document.getElementById("no5").innerHTML;
+            document.querySelector('#numinput2').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
+            document.querySelector('#no6').innerHTML = "Let's see if you are right";
+          };
+
+            //event handler functions
+          $(document).ready(function(){ //jQuery
+            var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
+                        'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];
+            var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
+          //Multiplication event handlers 
+          $('#numinput3').keypress(function(){
+                $("#check3").attr("disabled", false); //activate check button only after input box has input
+              })
+              $("#check3").click(function(){ //checking using check button 
+                if($('#numinput3').val()*1 == no7*1 * no8*1){ //checks user input and displays apporpriate message
+                  document.querySelector("#no9").innerHTML = "Correct!"                  
+                } else document.querySelector("#no9").innerHTML = "Try again!" 
+                $("#no9").css('font-size','0.5em');
+                if($('#numinput3').val()*1 == no7*1 * no8*1){ //checks user input vs product of the two numbers calculated
+                  $('h3').remove();
+                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
+                  $("#check3").attr("disabled", true);
+                  $('#numinput3').prop("disabled",true); 
+                  } else $("#check3").attr("disabled", true);
+                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
+            });
+          //Addition event handlers 
+              $('#numinput').keypress(function(){
+                $("#check").attr("disabled", false); //activate check button only after input box has input
+              })
+              $("#check").click(function(){ //checking using check button 
+                if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input and displays apporpriate message
+                  document.querySelector("#no3").innerHTML = "Correct!"                  
+                } else document.querySelector("#no3").innerHTML = "Try again!" 
+                $("#no3").css('font-size','0.5em');
+                if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input vs sum of the two numbers calculated
+                  $('h3').remove();
+                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
+                  $("#check").attr("disabled", true);
+                  $('#numinput').prop("disabled",true); 
+                  } else $("#check").attr("disabled", true);
+                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
+            }); 
+
+            //Subtraction event handlers
+            $('#numinput2').keypress(function(){
+                $("#check2").attr("disabled", false); //activate check button only after input box has input
+              })
+              $("#check2").click(function(){ //checking using check button
+                if($('#numinput2').val()*1 == no4*1 - no5*1){ //checks user input and displays apporpriate message 
+                  document.querySelector("#no6").innerHTML = "Correct!";
+                } else document.querySelector("#no6").innerHTML = "Try again!" 
+                $("#no6").css('font-size','0.5em');
+                if($('#numinput2').val()*1 == no4*1 - no5*1){ //checks user input vs subtraction of the two numbers calculated
+                  $('h3').remove();
+                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
+                  $("#check2").attr("disabled", true); 
+                  $('#numinput2').prop("disabled",true);
+                  } else $("#check2").attr("disabled", true);
+                  animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
+            }); 
+
+          });
+
+             
+        </script>     
+    </body>
+</html>
