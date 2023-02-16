@@ -179,9 +179,7 @@
           $(document).ready(function(){ //jQuery
             var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
                         'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];
-            // var arrAnimalImg = ['lion.jpg','frozen.jpg'];//including frozen img for maiu app
             var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
-            // var animalImg = arrAnimalImg[Math.floor(Math.random()*2)];//change in other arrAnimalImg as well
           //Multiplication event handlers 
           $('#numinput3').keypress(function(){
                 $("#check3").attr("disabled", false); //activate check button only after input box has input
@@ -197,8 +195,7 @@
                   $("#check3").attr("disabled", true);
                   $('#numinput3').prop("disabled",true); 
                   } else $("#check3").attr("disabled", true);
-                // animalImg = arrAnimalImg[Math.floor(Math.random()*10)]; 
-                var animalImg = arrAnimalImg[Math.floor(Math.random()*2)];//change in other arrAnimalImg as well 
+                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
             });
           //Addition event handlers 
               $('#numinput').keypress(function(){
@@ -215,8 +212,7 @@
                   $("#check").attr("disabled", true);
                   $('#numinput').prop("disabled",true); 
                   } else $("#check").attr("disabled", true);
-                // animalImg = arrAnimalImg[Math.floor(Math.random()*10)]; 
-                var animalImg = arrAnimalImg[Math.floor(Math.random()*2)];//change in other arrAnimalImg as well 
+                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
             }); 
 
             //Subtraction event handlers
@@ -234,8 +230,7 @@
                   $("#check2").attr("disabled", true); 
                   $('#numinput2').prop("disabled",true);
                   } else $("#check2").attr("disabled", true);
-                  // animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
-                  var animalImg = arrAnimalImg[Math.floor(Math.random()*2)];//change in other arrAnimalImg as well
+                  animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
             }); 
 
           });
