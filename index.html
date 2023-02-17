@@ -42,7 +42,7 @@
         <div class="container-fluid text-center" style="background-color: bisque;">                  
           <div class="row">  
             <div class="col py-3">
-              <h4>Adding and subtracting numbers!</h4>
+              <h4>Adding numbers!</h4>
             </div>              
           </div>
         </div>
@@ -59,22 +59,7 @@
 
         <div class="container px-4">
 
-          <!-- Multiplication row -->
-          <div class="row justify-content-center" style="color:rgb(5, 138, 82)">Multiply</div>
-          <br>
 
-          <div class="row align-items-center">
-            <div class="col" id="no7"></div>
-            <div class="col">x</div>
-            <div class="col" id="no8"></div>
-            <div class="col">=</div>
-            <input class="col " type="number" id="numinput3" name="display"></input>
-            <div class="col h4 text-center" id="no9">Let's see if you are right</div>
-            <button type="button" class="col btn btn-warning btn-md m-4" id="check3" disabled="true">Check</button>
-            <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
-          </div> 
-          <br>
-          <br>
 
           <!-- Addition row -->
           <div class="row justify-content-center" style="color:blueviolet">Add</div>
@@ -94,22 +79,7 @@
           <br>
           <br>
 
-          <!-- Subtraction row -->
-          <div class="row justify-content-center" style="color:rgb(226, 162, 43)">Subtract</div>
-          <br>
 
-          <div class="row align-items-center">
-            <div class="col" id="no4"></div>
-            <div class="col">-</div>
-            <div class="col" id="no5"></div>
-            <div class="col">=</div>
-            <input class="col " type="number" id="numinput2" name="display"></input>
-            <div class="col h4 text-center" id="no6">Let's see if you are right</div>
-            <button type="button" class="col btn btn-warning btn-md m-4" id="check2" disabled="true">Check</button>
-            <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
-          </div> 
-          <br>
-          <br>
           
         <script>
           //function to return random numbers within a range
@@ -119,23 +89,15 @@
             return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
           }
 
-          // sets the two numbers for multiplication using random method 
-          document.querySelector("#no7").innerHTML = getRandomInt(5,20);
-          var no7 = document.querySelector("#no7").innerHTML;
-          document.querySelector("#no8").innerHTML = getRandomInt(1,10);
-          var no8 = document.querySelector("#no8").innerHTML;
+
           
           // sets the two numbers for addition using random method 
-          document.querySelector("#no1").innerHTML = getRandomInt(5,30);
+          document.querySelector("#no1").innerHTML = getRandomInt(1,10);
           var no1 = document.querySelector("#no1").innerHTML;
-          document.querySelector("#no2").innerHTML = getRandomInt(15,50);
+          document.querySelector("#no2").innerHTML = getRandomInt(1,10);
           var no2 = document.querySelector("#no2").innerHTML;
           
-          // sets the two numbers for subtraction using random method 
-          document.querySelector("#no4").innerHTML = getRandomInt(25,50);
-          var no4 = document.querySelector("#no4").innerHTML;
-          document.querySelector("#no5").innerHTML = getRandomInt(5,20);;
-          var no5 = document.querySelector("#no5").innerHTML;
+  
 
           // resets the numbers for math operations using random method
           function tryAnother(){
@@ -144,59 +106,27 @@
             $('#numinput2').prop("disabled",false);
             $('#numinput3').prop("disabled",false);
 
-            // //Multiplication resets
-            $("#check3").attr("disabled", true);    
-            $("#no9").css('font-size','0.5em');
-            document.querySelector("#no7").innerHTML = getRandomInt(5,20);
-            no7 = document.getElementById("no7").innerHTML;
-            document.getElementById("no8").innerHTML = getRandomInt(1,10);;
-            no8 = document.getElementById("no8").innerHTML;
-            document.querySelector('#numinput3').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
-            document.querySelector('#no9').innerHTML = "Let's see if you are right";
-
             // //Addition resets
             $("#check").attr("disabled", true);
             $("#no3").css('font-size','0.5em');
-            document.querySelector("#no1").innerHTML = getRandomInt(5,30);
+            document.querySelector("#no1").innerHTML = getRandomInt(1,10);
             no1 = document.getElementById("no1").innerHTML;
-            document.getElementById("no2").innerHTML = getRandomInt(15,50);;
+            document.getElementById("no2").innerHTML = getRandomInt(1,10);;
             no2 = document.getElementById("no2").innerHTML;
             document.querySelector('#numinput').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
             document.querySelector('#no3').innerHTML = "Let's see if you are right";
             
-            //Subtraction resets
-            $("#check2").attr("disabled", true);  
-            $("#no6").css('font-size','0.5em');
-            document.querySelector("#no4").innerHTML = getRandomInt(25,50);
-            no4 = document.getElementById("no4").innerHTML;
-            document.getElementById("no5").innerHTML = getRandomInt(5,20);;
-            no5 = document.getElementById("no5").innerHTML;
-            document.querySelector('#numinput2').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
-            document.querySelector('#no6').innerHTML = "Let's see if you are right";
+ 
           };
 
             //event handler functions
           $(document).ready(function(){ //jQuery
-            var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
-                        'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];
-            var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
-          //Multiplication event handlers 
-          $('#numinput3').keypress(function(){
-                $("#check3").attr("disabled", false); //activate check button only after input box has input
-              })
-              $("#check3").click(function(){ //checking using check button 
-                if($('#numinput3').val()*1 == no7*1 * no8*1){ //checks user input and displays apporpriate message
-                  document.querySelector("#no9").innerHTML = "Correct!"                  
-                } else document.querySelector("#no9").innerHTML = "Try again!" 
-                $("#no9").css('font-size','0.5em');
-                if($('#numinput3').val()*1 == no7*1 * no8*1){ //checks user input vs product of the two numbers calculated
-                  $('h3').remove();
-                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
-                  $("#check3").attr("disabled", true);
-                  $('#numinput3').prop("disabled",true); 
-                  } else $("#check3").attr("disabled", true);
-                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
-            });
+            // var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
+            //             'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];// updating for Maiu app
+            var arrAnimalImg = ['animated-balloon.gif','frozen.jpg','frozen2.jpg', 'stallion.jpg', 'wildkratts.jpg'];
+            // var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
+            var animalImg = arrAnimalImg[Math.floor(Math.random()*5)];
+      
           //Addition event handlers 
               $('#numinput').keypress(function(){
                 $("#check").attr("disabled", false); //activate check button only after input box has input
@@ -212,27 +142,8 @@
                   $("#check").attr("disabled", true);
                   $('#numinput').prop("disabled",true); 
                   } else $("#check").attr("disabled", true);
-                animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
-            }); 
-
-            //Subtraction event handlers
-            $('#numinput2').keypress(function(){
-                $("#check2").attr("disabled", false); //activate check button only after input box has input
-              })
-              $("#check2").click(function(){ //checking using check button
-                if($('#numinput2').val()*1 == no4*1 - no5*1){ //checks user input and displays apporpriate message 
-                  document.querySelector("#no6").innerHTML = "Correct!";
-                } else document.querySelector("#no6").innerHTML = "Try again!" 
-                $("#no6").css('font-size','0.5em');
-                if($('#numinput2').val()*1 == no4*1 - no5*1){ //checks user input vs subtraction of the two numbers calculated
-                  $('h3').remove();
-                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
-                  $("#check2").attr("disabled", true); 
-                  $('#numinput2').prop("disabled",true);
-                  } else $("#check2").attr("disabled", true);
-                  animalImg = arrAnimalImg[Math.floor(Math.random()*10)];  
-            }); 
-
+                animalImg = arrAnimalImg[Math.floor(Math.random()*5)];  
+            });
           });
 
              
