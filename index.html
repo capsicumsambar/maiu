@@ -92,9 +92,15 @@
 
           
           // sets the two numbers for addition using random method 
-          document.querySelector("#no1").innerHTML = getRandomInt(1,10);
+          var randnum = getRandomInt(1,10);
+          var randnum2 = getRandomInt(1,10);
+          while (randnum+randnum2 > 10){
+            randnum = getRandomInt(1,10);
+            randnum2 = getRandomInt(1,10);
+          }
+          document.querySelector("#no1").innerHTML = randnum;
           var no1 = document.querySelector("#no1").innerHTML;
-          document.querySelector("#no2").innerHTML = getRandomInt(1,10);
+          document.querySelector("#no2").innerHTML = randnum2;
           var no2 = document.querySelector("#no2").innerHTML;
           
   
@@ -109,9 +115,15 @@
             // //Addition resets
             $("#check").attr("disabled", true);
             $("#no3").css('font-size','0.5em');
-            document.querySelector("#no1").innerHTML = getRandomInt(1,10);
-            no1 = document.getElementById("no1").innerHTML;
-            document.getElementById("no2").innerHTML = getRandomInt(1,10);;
+            randnum = getRandomInt(1,10);
+            randnum2 = getRandomInt(1,10);
+            while (randnum+randnum2 > 10){
+            randnum = getRandomInt(1,10);
+            randnum2 = getRandomInt(1,10);
+          }
+            document.querySelector("#no1").innerHTML = randnum;
+            no1 = document.getElementById("no1").innerHTML
+            document.getElementById("no2").innerHTML = randnum2;
             no2 = document.getElementById("no2").innerHTML;
             document.querySelector('#numinput').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
             document.querySelector('#no3').innerHTML = "Let's see if you are right";
