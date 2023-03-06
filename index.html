@@ -145,8 +145,12 @@
               })
               $("#check").click(function(){ //checking using check button 
                 if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input and displays apporpriate message
-                  document.querySelector("#no3").innerHTML = "Correct!"                  
-                } else document.querySelector("#no3").innerHTML = "Try again!" 
+                  document.querySelector("#no3").innerHTML = "Correct!";
+                  speechSynthesis.speak(new SpeechSynthesisUtterance('That is awesome'));                 
+                } else {
+                  document.querySelector("#no3").innerHTML = "Try again!";
+                  speechSynthesis.speak(new SpeechSynthesisUtterance('Not quite, try again')); 
+                }
                 $("#no3").css('font-size','0.5em');
                 if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input vs sum of the two numbers calculated
                   $('h3').remove();
