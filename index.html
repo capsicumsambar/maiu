@@ -135,9 +135,9 @@
           $(document).ready(function(){ //jQuery
             // var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
             //             'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];// updating for Maiu app
-            var arrAnimalImg = ['animated-balloon.gif','frozen.jpg','frozen2.jpg', 'stallion.jpg', 'wildkratts.jpg'];
+            var arrAnimalImg = ['encanto.gif','frozen2.jpg', 'stallion.jpg', 'wildkratts.jpg'];
             // var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
-            var animalImg = arrAnimalImg[Math.floor(Math.random()*5)];
+            var animalImg = arrAnimalImg[Math.floor(Math.random()*4)];
       
           //Addition event handlers 
               $('#numinput').keypress(function(){
@@ -158,7 +158,7 @@
                   $("#check").attr("disabled", true);
                   $('#numinput').prop("disabled",true); 
                   } else $("#check").attr("disabled", true);
-                animalImg = arrAnimalImg[Math.floor(Math.random()*5)];  
+                animalImg = arrAnimalImg[Math.floor(Math.random()*4)];  
             });
           });
 
