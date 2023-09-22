@@ -1,168 +1,178 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head 
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head 
          content must come *after* these tags -->
-        <title>Maiu games!</title>    
-        <!-- Bootstrap CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <!-- End Bootstrap CDN -->
-        <!-- JQuery CDN -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- End JQuery CDN -->
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="main.css">
+  <title>Maiu games!</title>
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <!-- End Bootstrap CDN -->
+  <!-- JQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- End JQuery CDN -->
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="main.css">
 
-    </head>
-    <body>
-      
-        <!-- heading section-->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="font-size: 1rem;">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="http://www.karthiksuri.com/quiz">Charts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="http://www.karthiksuri.com/teju">Numbers</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://www.tableofwords.com">Words</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://karthiksuri.com/animalquiz">Animal Quiz</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="container-fluid text-center" style="background-color: bisque;">                  
-          <div class="row">  
-            <div class="col py-3">
-              <h4>Adding numbers!</h4>
-            </div>              
-          </div>
+</head>
+
+<body>
+
+  <!-- heading section-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="font-size: 1rem;">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://www.karthiksuri.com/quiz">Charts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="http://www.karthiksuri.com/teju">Numbers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://www.tableofwords.com">Words</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://karthiksuri.com/animalquiz">Animal Quiz</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container-fluid text-center" style="background-color: bisque;">
+    <div class="row">
+      <div class="col py-3">
+        <h4>Adding numbers!</h4>
+      </div>
+    </div>
+  </div>
+  <!-- Section where stickers appear -->
+  <div class="container-fluid text-center mt-3">
+    <div class="row">
+      <div class="col">
+        <div id="sticker" style="background-color: white;">
         </div>
-        <!-- Section where stickers appear -->
-        <div class="container-fluid text-center mt-3">                  
-          <div class="row">
-            <div class="col">
-              <div id="sticker" style="background-color: white;">
-              </div>              
-            </div>
-        </div>    
-          
-        <!-- Inputs and events -->
+      </div>
+    </div>
 
-        <div class="container px-4">
+    <!-- Inputs and events -->
+
+    <div class="container px-4">
 
 
 
-          <!-- Addition row -->
-          <div class="row justify-content-center" style="color:blueviolet">Add</div>
-          <br>
+      <!-- Addition row -->
+      <div class="row justify-content-center" style="color:blueviolet">Add</div>
+      <br>
 
-          <div class="row align-items-center">
-              <div class="col" id="no1"></div>
-              <div class="col">+</div>
-              <div class="col" id="no2"></div>
-              <div class="col">=</div>
-              <input class="col " type="number" id="numinput" name="display"></input>
-              <div class="col h4 text-center" id="no3">Let's see if you are right</div>
-              <button type="button" class="col btn btn-warning btn-md m-4" id="check" disabled="true">Check</button>
-              <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
-          </div>
+      <div class="row align-items-center">
+        <div class="col" id="no1"></div>
+        <div class="col">+</div>
+        <div class="col" id="no2"></div>
+        <div class="col">=</div>
+        <input class="col " type="number" id="numinput" name="display"></input>
+        <div class="col h4 text-center" id="no3">Let's see if you are right</div>
+        <button type="button" class="col btn btn-warning btn-md m-4" id="check" disabled="true">Check</button>
+        <button type="button" class="col btn btn-primary btn-md" onClick="tryAnother()">Try another</button>
+      </div>
 
-          <br>
-          <br>
-
-
-          
-        <script>
-          //function to return random numbers within a range
-          function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-          }
+      <br>
+      <br>
 
 
-          
-          // sets the two numbers for addition using random method 
-          var randnum = getRandomInt(1,10);
-          var randnum2 = getRandomInt(1,10);
-          while (randnum+randnum2 > 10){
-            randnum = getRandomInt(1,10);
-            randnum2 = getRandomInt(1,10);
+
+      <script>
+        //function to return random numbers within a range
+        function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+
+
+        // sets the two numbers for addition using random method 
+        var randnum = getRandomInt(1, 100);
+        var randnum2 = getRandomInt(1, 100);
+        while (randnum + randnum2 < 10 || randnum + randnum2 > 100) {
+          randnum = getRandomInt(1, 100);
+          randnum2 = getRandomInt(1, 100);
+        }
+        document.querySelector("#no1").innerHTML = randnum;
+        var no1 = document.querySelector("#no1").innerHTML;
+        document.querySelector("#no2").innerHTML = randnum2;
+        var no2 = document.querySelector("#no2").innerHTML;
+
+
+
+        // resets the numbers for math operations using random method
+        function tryAnother() {
+          // Disabling check when no input
+          $('#numinput').prop("disabled", false);
+          $('#numinput2').prop("disabled", false);
+          $('#numinput3').prop("disabled", false);
+
+          // //Addition resets
+          $("#check").attr("disabled", true);
+          $("#no3").css('font-size', '0.5em');
+          var randnum = getRandomInt(1, 100);
+          var randnum2 = getRandomInt(1, 100);
+          while (randnum + randnum2 < 10 || randnum + randnum2 > 100) {
+            randnum = getRandomInt(1, 100);
+            randnum2 = getRandomInt(1, 100);
           }
           document.querySelector("#no1").innerHTML = randnum;
-          var no1 = document.querySelector("#no1").innerHTML;
-          document.querySelector("#no2").innerHTML = randnum2;
-          var no2 = document.querySelector("#no2").innerHTML;
-          
-  
+          no1 = document.getElementById("no1").innerHTML
+          document.getElementById("no2").innerHTML = randnum2;
+          no2 = document.getElementById("no2").innerHTML;
+          document.querySelector('#numinput').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
+          document.querySelector('#no3').innerHTML = "Let's see if you are right";
 
-          // resets the numbers for math operations using random method
-          function tryAnother(){
-            // Disabling check when no input
-            $('#numinput').prop("disabled",false);
-            $('#numinput2').prop("disabled",false);
-            $('#numinput3').prop("disabled",false);
 
-            // //Addition resets
-            $("#check").attr("disabled", true);
-            $("#no3").css('font-size','0.5em');
-            randnum = getRandomInt(1,10);
-            randnum2 = getRandomInt(1,10);
-            while (randnum+randnum2 > 10){
-            randnum = getRandomInt(1,10);
-            randnum2 = getRandomInt(1,10);
-          }
-            document.querySelector("#no1").innerHTML = randnum;
-            no1 = document.getElementById("no1").innerHTML
-            document.getElementById("no2").innerHTML = randnum2;
-            no2 = document.getElementById("no2").innerHTML;
-            document.querySelector('#numinput').value = ""; // when 'tryanother' button pressed again, resets value of input box to blank
-            document.querySelector('#no3').innerHTML = "Let's see if you are right";
-            
- 
-          };
+        };
 
-            //event handler functions
-          $(document).ready(function(){ //jQuery
-            // var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
-            //             'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];// updating for Maiu app
-            var arrAnimalImg = ['encanto.gif','elsa.gif', 'isabella-encanto.gif', 'elsa.gif'];
-            // var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
-            var animalImg = arrAnimalImg[Math.floor(Math.random()*4)];
-      
+        //event handler functions
+        $(document).ready(function () { //jQuery
+          // var arrAnimalImg = ['lion.jpg','tiger.jpg','puma.jpg','ocelot.jpg','greywolf.jpg','cheetah.jpg',
+          //             'whitetiger.jpg','leopard.jpg','rustycat.jpg','jaguar.jpg'];// updating for Maiu app
+          var arrAnimalImg = ['encanto.gif', 'elsa.gif', 'isabella-encanto.gif', 'elsa.gif'];
+          // var animalImg = arrAnimalImg[Math.floor(Math.random()*10)];
+          var animalImg = arrAnimalImg[Math.floor(Math.random() * 4)];
+
           //Addition event handlers 
-              $('#numinput').keypress(function(){
-                $("#check").attr("disabled", false); //activate check button only after input box has input
-              })
-              $("#check").click(function(){ //checking using check button 
-                if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input and displays apporpriate message
-                  document.querySelector("#no3").innerHTML = "Correct!";
-                  speechSynthesis.speak(new SpeechSynthesisUtterance('That is awesome'));                 
-                } else {
-                  document.querySelector("#no3").innerHTML = "Try again!";
-                  speechSynthesis.speak(new SpeechSynthesisUtterance('Not quite, try again')); 
-                }
-                $("#no3").css('font-size','0.5em');
-                if($('#numinput').val()*1 == no1*1 + no2*1){ //checks user input vs sum of the two numbers calculated
-                  $('h3').remove();
-                  $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
-                  $("#check").attr("disabled", true);
-                  $('#numinput').prop("disabled",true); 
-                  } else $("#check").attr("disabled", true);
-                animalImg = arrAnimalImg[Math.floor(Math.random()*4)];  
-            });
+          $('#numinput').keypress(function () {
+            $("#check").attr("disabled", false); //activate check button only after input box has input
+          })
+          $("#check").click(function () { //checking using check button 
+            if ($('#numinput').val() * 1 == no1 * 1 + no2 * 1) { //checks user input and displays apporpriate message
+              document.querySelector("#no3").innerHTML = "Correct!";
+              speechSynthesis.speak(new SpeechSynthesisUtterance('That is awesome'));
+            } else {
+              document.querySelector("#no3").innerHTML = "Try again!";
+              speechSynthesis.speak(new SpeechSynthesisUtterance('Not quite, try again'));
+            }
+            $("#no3").css('font-size', '0.5em');
+            if ($('#numinput').val() * 1 == no1 * 1 + no2 * 1) { //checks user input vs sum of the two numbers calculated
+              $('h3').remove();
+              $('#sticker').append(`<img width='120' height='120' src=${animalImg}>`);
+              $("#check").attr("disabled", true);
+              $('#numinput').prop("disabled", true);
+            } else $("#check").attr("disabled", true);
+            animalImg = arrAnimalImg[Math.floor(Math.random() * 4)];
           });
+        });
 
-             
-        </script>     
-    </body>
+
+      </script>
+</body>
+
 </html>
