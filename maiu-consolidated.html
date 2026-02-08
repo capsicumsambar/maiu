@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maiu Math</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #ffdab9;
+      }
+
+      /* ─── NAV ─── */
+      .top-nav {
+        background: #1a1a2e;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        height: 56px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .nav-brand {
+        color: #f9a825;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-right: 32px;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+      }
+      .nav-links li a,
+      .nav-links li button {
+        display: inline-block;
+        padding: 8px 16px;
+        color: #ffffffcc;
+        text-decoration: none;
+        border-radius: 8px 8px 0 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+        font-family: inherit;
+      }
+      .nav-links li a:hover,
+      .nav-links li button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      .nav-links li .active-tab {
+        background: #ffdab9;
+        color: #1a1a2e;
+      }
+      .nav-links li .active-tab:hover {
+        background: #ffdab9;
+        color: #1a1a2e;
+      }
+
+      /* ─── QUIZ SECTION ─── */
+      #quiz-section {
+        background: #ffdab9;
+        min-height: calc(100vh - 56px);
+      }
+      .animal-print-bg {
+        background-image: url("https://www.transparenttextures.com/patterns/animal-prints.png");
+      }
+      @keyframes parade {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-parade {
+        width: 200%;
+        animation: parade 15s linear infinite;
+      }
+
+      /* ─── CHARTS SECTION ─── */
+      #charts-section {
+        font-family:
+          "Comic Neue", "Comic Sans MS", "Chalkboard", cursive, sans-serif;
+        background: linear-gradient(135deg, #fff9e6 0%, #ffe4b3 100%);
+        min-height: calc(100vh - 56px);
+        padding: 20px;
+      }
+
+      @media print {
+        .top-nav {
+          display: none !important;
+        }
+        body {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        .no-print {
+          display: none !important;
+        }
+        .table-card {
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+        .tables-grid {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 12px !important;
+        }
+        .chart-header {
+          break-after: avoid !important;
+          page-break-after: avoid !important;
+        }
+        .chart-container {
+          padding: 10px !important;
+        }
+      }
+
+      .chart-container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .chart-header {
+        text-align: center;
+        margin-bottom: 15px;
+        position: relative;
+      }
+      .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .chart-title {
+        font-size: 2.2em;
+        color: #8b4513;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: "Comic Neue", "Comic Sans MS", cursive;
+      }
+      .lion-svg {
+        width: 70px;
+        height: 70px;
+      }
+      .mini-lion {
+        width: 35px;
+        height: 35px;
+      }
+
+      .tables-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 15px;
+      }
+      @media (max-width: 900px) {
+        .tables-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .tables-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .chart-title {
+          font-size: 1.6em;
+        }
+      }
+      @media (max-width: 400px) {
+        .tables-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .table-card {
+        background: white;
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 3px solid;
+        position: relative;
+        overflow: hidden;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .table-card::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        opacity: 0.1;
+      }
+      .table-card:nth-child(1) {
+        border-color: #ff6b6b;
+      }
+      .table-card:nth-child(1)::before {
+        background: #ff6b6b;
+      }
+      .table-card:nth-child(2) {
+        border-color: #4ecdc4;
+      }
+      .table-card:nth-child(2)::before {
+        background: #4ecdc4;
+      }
+      .table-card:nth-child(3) {
+        border-color: #45b7d1;
+      }
+      .table-card:nth-child(3)::before {
+        background: #45b7d1;
+      }
+      .table-card:nth-child(4) {
+        border-color: #96ceb4;
+      }
+      .table-card:nth-child(4)::before {
+        background: #96ceb4;
+      }
+      .table-card:nth-child(5) {
+        border-color: #f39c12;
+      }
+      .table-card:nth-child(5)::before {
+        background: #f39c12;
+      }
+      .table-card:nth-child(6) {
+        border-color: #dda0dd;
+      }
+      .table-card:nth-child(6)::before {
+        background: #dda0dd;
+      }
+      .table-card:nth-child(7) {
+        border-color: #98d8c8;
+      }
+      .table-card:nth-child(7)::before {
+        background: #98d8c8;
+      }
+      .table-card:nth-child(8) {
+        border-color: #f7dc6f;
+      }
+      .table-card:nth-child(8)::before {
+        background: #f7dc6f;
+      }
+      .table-card:nth-child(9) {
+        border-color: #bb8fce;
+      }
+      .table-card:nth-child(9)::before {
+        background: #bb8fce;
+      }
+      .table-card:nth-child(10) {
+        border-color: #85c1e9;
+      }
+      .table-card:nth-child(10)::before {
+        background: #85c1e9;
+      }
+      .table-card:nth-child(11) {
+        border-color: #f1948a;
+      }
+      .table-card:nth-child(11)::before {
+        background: #f1948a;
+      }
+      .table-card:nth-child(12) {
+        border-color: #82e0aa;
+      }
+      .table-card:nth-child(12)::before {
+        background: #82e0aa;
+      }
+
+      .table-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 2px dashed #ccc;
+      }
+      .table-number {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #8b4513;
+      }
+      .table-content {
+        font-size: 0.85em;
+        line-height: 1.5;
+      }
+      .equation {
+        display: flex;
+        justify-content: space-between;
+        padding: 1px 4px;
+        border-radius: 4px;
+      }
+      .equation:nth-child(odd) {
+        background: rgba(255, 200, 100, 0.15);
+      }
+      .equation:hover {
+        background: rgba(255, 165, 0, 0.3);
+      }
+      .multiplier {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .result {
+        color: #27ae60;
+        font-weight: bold;
+      }
+
+      .print-btn {
+        display: block;
+        margin: 25px auto;
+        padding: 15px 40px;
+        font-size: 1.3em;
+        font-family: inherit;
+        background: linear-gradient(135deg, #f39c12, #e74c3c);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .print-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Section visibility */
+      .section-hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="top-nav">
+      <a class="nav-brand" href="#">🦁 Maiu Math</a>
+      <ul class="nav-links">
+        <li>
+          <button
+            id="nav-quiz"
+            class="active-tab"
+            onclick="showSection('quiz')"
+          >
+            🎮 Math Quiz
+          </button>
+        </li>
+        <li>
+          <button id="nav-charts" onclick="showSection('charts')">
+            📊 Times Tables
+          </button>
+        </li>
+        <li>
+          <a href="http://www.karthiksuri.com/teju" target="_blank"
+            >🔢 Numbers</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ═══════════════ QUIZ SECTION ═══════════════ -->
+    <div id="quiz-section">
+      <div id="app-container">
+        <!-- Home Page -->
+        <div
+          id="home-page"
+          class="flex flex-col items-center justify-center min-h-screen text-center p-4 animal-print-bg"
+          style="min-height: calc(100vh - 56px)"
+        >
+          <div class="bg-white/80 p-8 rounded-2xl shadow-xl">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+              Welcome to Maiu Math!
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8">
+              Let's get wild about math!
+            </p>
+            <div class="space-y-4">
+              <button
+                id="start-default-quiz-btn"
+                class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full text-xl transition-transform transform hover:scale-105 shadow-lg"
+              >
+                Play Default Quiz
+              </button>
+              <button
+                id="show-creator-btn"
+                class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 px-8 rounded-full text-xl transition-transform transform hover:scale-105 shadow-lg"
+              >
+                Create Your Own Quiz
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Quiz Creator -->
+        <div
+          id="creator-page"
+          class="hidden flex-col items-center justify-center min-h-screen p-4 bg-gray-100"
+          style="min-height: calc(100vh - 56px)"
+        >
+          <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-3xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">
+              Create a Custom Quiz
+            </h2>
+            <p class="text-gray-600 mb-6">
+              Paste your questions below. Follow the format exactly as shown in
+              the example. Separate each question block with a blank line.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="quiz-text-input"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Your Quiz Text:</label
+                >
+                <textarea
+                  id="quiz-text-input"
+                  rows="12"
+                  class="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                  placeholder="Paste your questions here..."
+                ></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Example Format:</label
+                >
+                <pre
+                  class="bg-gray-200 p-4 rounded-lg text-sm whitespace-pre-wrap"
+                ><code>What is 5 + 3?
+a) 7
+b) 8
+c) 9
+d) 10
+Answer: 8
+
+A farmer has 12 sheep and sells 5. How many are left?
+a) 5
+b) 6
+c) 7
+d) 8
+Answer: 7</code></pre>
+              </div>
+            </div>
+            <div
+              id="creator-error"
+              class="text-red-500 font-semibold my-4 text-center"
+            ></div>
+            <div class="flex justify-center space-x-4 mt-6">
+              <button
+                id="cancel-creator-btn"
+                class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-lg transition"
+              >
+                Cancel
+              </button>
+              <button
+                id="generate-quiz-btn"
+                class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-lg transition"
+              >
+                Generate &amp; Play!
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div
+          id="quiz-page"
+          class="hidden flex-col items-center justify-center min-h-screen p-4"
+          style="min-height: calc(100vh - 56px)"
+        ></div>
+
+        <!-- Completion Page -->
+        <div
+          id="completion-page"
+          class="hidden flex-col items-center justify-center min-h-screen text-center p-4"
+          style="min-height: calc(100vh - 56px)"
+        ></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CHARTS SECTION ═══════════════ -->
+    <div id="charts-section" class="section-hidden">
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="title-row">
+            <svg class="lion-svg" viewBox="0 0 100 100">
+              <ellipse cx="50" cy="50" rx="40" ry="38" fill="#D2691E" />
+              <ellipse cx="50" cy="48" rx="35" ry="33" fill="#CD853F" />
+              <circle cx="20" cy="40" r="8" fill="#8B4513" />
+              <circle cx="25" cy="25" r="8" fill="#A0522D" />
+              <circle cx="40" cy="15" r="8" fill="#8B4513" />
+              <circle cx="60" cy="15" r="8" fill="#A0522D" />
+              <circle cx="75" cy="25" r="8" fill="#8B4513" />
+              <circle cx="80" cy="40" r="8" fill="#A0522D" />
+              <circle cx="80" cy="55" r="8" fill="#8B4513" />
+              <circle cx="75" cy="70" r="8" fill="#A0522D" />
+              <circle cx="25" cy="70" r="8" fill="#8B4513" />
+              <circle cx="20" cy="55" r="8" fill="#A0522D" />
+              <ellipse cx="50" cy="52" rx="28" ry="26" fill="#F4A460" />
+              <ellipse cx="50" cy="55" rx="20" ry="18" fill="#FFDAB9" />
+              <ellipse cx="40" cy="48" rx="6" ry="7" fill="white" />
+              <ellipse cx="60" cy="48" rx="6" ry="7" fill="white" />
+              <circle cx="41" cy="49" r="3" fill="#2C1810" />
+              <circle cx="61" cy="49" r="3" fill="#2C1810" />
+              <circle cx="42" cy="47" r="1.5" fill="white" />
+              <circle cx="62" cy="47" r="1.5" fill="white" />
+              <path
+                d="M34 42 Q40 39 46 42"
+                stroke="#8B4513"
+                stroke-width="2"
+                fill="none"
+              />
+              <path
+                d="M54 42 Q60 39 66 42"
+                stroke="#8B4513"
+                stroke-width="2"
+                fill="none"
+              />
+              <ellipse cx="50" cy="58" rx="5" ry="4" fill="#2C1810" />
+              <ellipse cx="50" cy="57" rx="2" ry="1" fill="#5C4030" />
+              <path
+                d="M50 62 Q42 70 38 65"
+                stroke="#2C1810"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M50 62 Q58 70 62 65"
+                stroke="#2C1810"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <circle cx="42" cy="63" r="1" fill="#8B4513" />
+              <circle cx="38" cy="61" r="1" fill="#8B4513" />
+              <circle cx="40" cy="66" r="1" fill="#8B4513" />
+              <circle cx="58" cy="63" r="1" fill="#8B4513" />
+              <circle cx="62" cy="61" r="1" fill="#8B4513" />
+              <circle cx="60" cy="66" r="1" fill="#8B4513" />
+              <ellipse cx="25" cy="35" rx="7" ry="8" fill="#F4A460" />
+              <ellipse cx="25" cy="35" rx="4" ry="5" fill="#FFB6C1" />
+              <ellipse cx="75" cy="35" rx="7" ry="8" fill="#F4A460" />
+              <ellipse cx="75" cy="35" rx="4" ry="5" fill="#FFB6C1" />
+              <ellipse
+                cx="32"
+                cy="58"
+                rx="5"
+                ry="3"
+                fill="#FFB6C1"
+                opacity="0.5"
+              />
+              <ellipse
+                cx="68"
+                cy="58"
+                rx="5"
+                ry="3"
+                fill="#FFB6C1"
+                opacity="0.5"
+              />
+            </svg>
+            <h1 class="chart-title">🦁 Maitri's Multiplication Kingdom 🦁</h1>
+            <svg class="lion-svg" viewBox="0 0 100 100">
+              <ellipse cx="50" cy="50" rx="40" ry="38" fill="#D2691E" />
+              <ellipse cx="50" cy="48" rx="35" ry="33" fill="#CD853F" />
+              <circle cx="20" cy="40" r="8" fill="#8B4513" />
+              <circle cx="25" cy="25" r="8" fill="#A0522D" />
+              <circle cx="40" cy="15" r="8" fill="#8B4513" />
+              <circle cx="60" cy="15" r="8" fill="#A0522D" />
+              <circle cx="75" cy="25" r="8" fill="#8B4513" />
+              <circle cx="80" cy="40" r="8" fill="#A0522D" />
+              <circle cx="80" cy="55" r="8" fill="#8B4513" />
+              <circle cx="75" cy="70" r="8" fill="#A0522D" />
+              <circle cx="25" cy="70" r="8" fill="#8B4513" />
+              <circle cx="20" cy="55" r="8" fill="#A0522D" />
+              <ellipse cx="50" cy="52" rx="28" ry="26" fill="#F4A460" />
+              <ellipse cx="50" cy="55" rx="20" ry="18" fill="#FFDAB9" />
+              <ellipse cx="40" cy="48" rx="6" ry="7" fill="white" />
+              <ellipse cx="60" cy="48" rx="6" ry="7" fill="white" />
+              <circle cx="41" cy="49" r="3" fill="#2C1810" />
+              <circle cx="61" cy="49" r="3" fill="#2C1810" />
+              <circle cx="42" cy="47" r="1.5" fill="white" />
+              <circle cx="62" cy="47" r="1.5" fill="white" />
+              <path
+                d="M34 42 Q40 39 46 42"
+                stroke="#8B4513"
+                stroke-width="2"
+                fill="none"
+              />
+              <path
+                d="M54 42 Q60 39 66 42"
+                stroke="#8B4513"
+                stroke-width="2"
+                fill="none"
+              />
+              <ellipse cx="50" cy="58" rx="5" ry="4" fill="#2C1810" />
+              <ellipse cx="50" cy="57" rx="2" ry="1" fill="#5C4030" />
+              <path
+                d="M50 62 Q42 70 38 65"
+                stroke="#2C1810"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M50 62 Q58 70 62 65"
+                stroke="#2C1810"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <circle cx="42" cy="63" r="1" fill="#8B4513" />
+              <circle cx="38" cy="61" r="1" fill="#8B4513" />
+              <circle cx="40" cy="66" r="1" fill="#8B4513" />
+              <circle cx="58" cy="63" r="1" fill="#8B4513" />
+              <circle cx="62" cy="61" r="1" fill="#8B4513" />
+              <circle cx="60" cy="66" r="1" fill="#8B4513" />
+              <ellipse cx="25" cy="35" rx="7" ry="8" fill="#F4A460" />
+              <ellipse cx="25" cy="35" rx="4" ry="5" fill="#FFB6C1" />
+              <ellipse cx="75" cy="35" rx="7" ry="8" fill="#F4A460" />
+              <ellipse cx="75" cy="35" rx="4" ry="5" fill="#FFB6C1" />
+              <ellipse
+                cx="32"
+                cy="58"
+                rx="5"
+                ry="3"
+                fill="#FFB6C1"
+                opacity="0.5"
+              />
+              <ellipse
+                cx="68"
+                cy="58"
+                rx="5"
+                ry="3"
+                fill="#FFB6C1"
+                opacity="0.5"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Multiplication tables generated by JS -->
+        <div class="tables-grid" id="tables-grid"></div>
+
+        <button class="print-btn no-print" onclick="window.print()">
+          🖨️ Print These Tables!
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // ═══════════════ SECTION NAVIGATION ═══════════════
+      function showSection(section) {
+        const quizSection = document.getElementById("quiz-section");
+        const chartsSection = document.getElementById("charts-section");
+        const navQuiz = document.getElementById("nav-quiz");
+        const navCharts = document.getElementById("nav-charts");
+
+        if (section === "quiz") {
+          quizSection.classList.remove("section-hidden");
+          chartsSection.classList.add("section-hidden");
+          navQuiz.classList.add("active-tab");
+          navCharts.classList.remove("active-tab");
+          document.body.style.background = "#FFDAB9";
+        } else {
+          quizSection.classList.add("section-hidden");
+          chartsSection.classList.remove("section-hidden");
+          navQuiz.classList.remove("active-tab");
+          navCharts.classList.add("active-tab");
+          document.body.style.background =
+            "linear-gradient(135deg, #fff9e6 0%, #ffe4b3 100%)";
+        }
+      }
+
+      // ═══════════════ GENERATE MULTIPLICATION TABLES ═══════════════
+      (function buildTables() {
+        const colors = [
+          "#FF6B6B",
+          "#4ECDC4",
+          "#45B7D1",
+          "#96CEB4",
+          "#F39C12",
+          "#DDA0DD",
+          "#98D8C8",
+          "#F7DC6F",
+          "#BB8FCE",
+          "#85C1E9",
+          "#F1948A",
+          "#82E0AA",
+        ];
+        const grid = document.getElementById("tables-grid");
+        for (let n = 1; n <= 12; n++) {
+          const color = colors[n - 1];
+          let eqs = "";
+          for (let i = 1; i <= 12; i++) {
+            eqs += `<div class="equation"><span><span class="multiplier">${n}</span> × ${i}</span><span class="result">= ${n * i}</span></div>`;
+          }
+          grid.innerHTML += `
+        <div class="table-card" style="border-color:${color}">
+            <div class="table-header">
+                <svg class="mini-lion" viewBox="0 0 100 100">
+                    <ellipse cx="50" cy="50" rx="40" ry="38" fill="${color}"/>
+                    <ellipse cx="50" cy="52" rx="28" ry="26" fill="#F4A460"/>
+                    <ellipse cx="50" cy="55" rx="20" ry="18" fill="#FFDAB9"/>
+                    <circle cx="40" cy="50" r="3" fill="#2C1810"/>
+                    <circle cx="60" cy="50" r="3" fill="#2C1810"/>
+                    <ellipse cx="50" cy="58" rx="4" ry="3" fill="#2C1810"/>
+                    <path d="M45 65 Q50 70 55 65" stroke="#2C1810" stroke-width="2" fill="none"/>
+                </svg>
+                <span class="table-number">× ${n}</span>
+            </div>
+            <div class="table-content">${eqs}</div>
+        </div>`;
+        }
+      })();
+
+      // ═══════════════ QUIZ APP ═══════════════
+      document.addEventListener("DOMContentLoaded", () => {
+        const defaultQuizData = {
+          title: "Addition & Subtraction Word Problems",
+          grade: "2nd Grade",
+          topic: "Operations & Algebraic Thinking",
+          questions: [
+            {
+              question:
+                "A monkey has 5 bananas. He finds 7 more. How many bananas does the monkey have now?",
+              options: ["10", "12", "15", "8"],
+              answer: "12",
+              funFact: "A group of monkeys is called a troop!",
+              hint: "Try counting on your fingers starting from 5!",
+              animalEmoji: "🐒",
+            },
+            {
+              question:
+                "A lion cub saw 15 butterflies. 6 flew away. How many are left?",
+              options: ["9", "21", "10", "8"],
+              answer: "9",
+              funFact: "A group of lions is called a pride.",
+              hint: 'This is a "take away" problem. What is 15 minus 6?',
+              animalEmoji: "🦁",
+            },
+            {
+              question:
+                "A penguin caught 8 fish in the morning and 9 in the afternoon. How many fish did the penguin catch in total?",
+              options: ["1", "16", "17", "18"],
+              answer: "17",
+              funFact: "Penguins can't fly, but they are amazing swimmers!",
+              hint: "Add the two numbers together!",
+              animalEmoji: "🐧",
+            },
+            {
+              question:
+                "There were 20 turtles on a beach. 11 went into the sea. How many turtles are still on the beach?",
+              options: ["9", "31", "10", "8"],
+              answer: "9",
+              funFact:
+                "Sea turtles can hold their breath for several hours underwater.",
+              hint: "Start with 20 and count backwards 11 times.",
+              animalEmoji: "🐢",
+            },
+            {
+              question:
+                "A zookeeper gave 13 apples to the elephants. They ate 8. How many apples are left?",
+              options: ["21", "6", "4", "5"],
+              answer: "5",
+              funFact: "Elephants have incredible memories.",
+              hint: "What number do you add to 8 to get 13?",
+              animalEmoji: "🐘",
+            },
+          ],
+        };
+
+        const animalThemePool = [
+          {
+            animalEmoji: "🦒",
+            funFact: "Giraffes are the tallest mammals on Earth.",
+            hint: "Think tall! Which number is the biggest?",
+          },
+          {
+            animalEmoji: "🦓",
+            funFact:
+              "Every zebra has a unique pattern of black and white stripes.",
+            hint: "Look for the pattern in the numbers.",
+          },
+          {
+            animalEmoji: "🐊",
+            funFact: "Crocodiles have been around for millions of years.",
+            hint: "Take a bite out of the problem! Subtract the smaller number.",
+          },
+          {
+            animalEmoji: "🦜",
+            funFact: "Some parrots can mimic human speech.",
+            hint: "Repeat the question to yourself to understand it.",
+          },
+          {
+            animalEmoji: "🐍",
+            funFact: "Snakes smell with their tongues.",
+            hint: "Slither through the numbers to find the answer.",
+          },
+        ];
+
+        let currentQuizData = {};
+        let currentQuestionIndex = 0;
+        let selectedOption = null;
+
+        const pages = {
+          home: document.getElementById("home-page"),
+          creator: document.getElementById("creator-page"),
+          quiz: document.getElementById("quiz-page"),
+          completion: document.getElementById("completion-page"),
+        };
+
+        const startDefaultQuizBtn = document.getElementById(
+          "start-default-quiz-btn",
+        );
+        const showCreatorBtn = document.getElementById("show-creator-btn");
+        const cancelCreatorBtn = document.getElementById("cancel-creator-btn");
+        const generateQuizBtn = document.getElementById("generate-quiz-btn");
+        const quizTextInput = document.getElementById("quiz-text-input");
+        const creatorError = document.getElementById("creator-error");
+
+        function navigateTo(pageName) {
+          Object.values(pages).forEach((page) => page.classList.add("hidden"));
+          pages[pageName].classList.remove("hidden", "flex");
+          if (["home", "creator", "quiz", "completion"].includes(pageName)) {
+            pages[pageName].classList.add("flex");
+          }
+        }
+
+        function parseQuizText(text) {
+          creatorError.textContent = "";
+          const questionBlocks = text.trim().split(/\n\s*\n/);
+          const newQuestions = [];
+          for (const block of questionBlocks) {
+            const lines = block
+              .trim()
+              .split("\n")
+              .filter((l) => l.trim() !== "");
+            if (lines.length !== 6) {
+              creatorError.textContent = `Error in formatting. Each question needs a question, 4 options, and an answer. Problem block: "${block.substring(0, 20)}..."`;
+              return null;
+            }
+            const question = lines[0].trim();
+            const options = lines
+              .slice(1, 5)
+              .map((l) => l.replace(/^[a-d]\)\s*/, "").trim());
+            const answer = lines[5].replace(/^Answer:\s*/, "").trim();
+            if (!options.includes(answer)) {
+              creatorError.textContent = `The provided answer "${answer}" must match one of the options for question: "${question}"`;
+              return null;
+            }
+            const theme =
+              animalThemePool[newQuestions.length % animalThemePool.length];
+            newQuestions.push({ question, options, answer, ...theme });
+          }
+          if (newQuestions.length === 0) {
+            creatorError.textContent =
+              "No valid questions found. Please check your input and the example format.";
+            return null;
+          }
+          return {
+            title: "Custom Quiz",
+            grade: "All Grades",
+            topic: "User Generated",
+            questions: newQuestions,
+          };
+        }
+
+        function loadQuestion() {
+          selectedOption = null;
+          const question = currentQuizData.questions[currentQuestionIndex];
+          const totalQuestions = currentQuizData.questions.length;
+          const progressPercentage =
+            ((currentQuestionIndex + 1) / totalQuestions) * 100;
+
+          pages.quiz.innerHTML = `
+            <div class="w-full max-w-2xl">
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <button id="quiz-home-btn" class="text-gray-600 hover:text-gray-800">&larr; Home</button>
+                        <p class="text-gray-600 font-semibold">Question ${currentQuestionIndex + 1} of ${totalQuestions}</p>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-green-500 h-2.5 rounded-full transition-all duration-500" style="width: ${progressPercentage}%"></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-2xl p-8">
+                    <div class="mb-6">
+                        <p class="text-gray-600 text-sm">${currentQuizData.grade} > ${currentQuizData.topic}</p>
+                        <h2 class="text-2xl font-bold text-gray-800 mt-2">${question.question}</h2>
+                    </div>
+                    <div id="options-container" class="space-y-4 mb-8">
+                        ${question.options
+                          .map(
+                            (option, index) => `
+                            <button class="option-btn w-full text-left p-4 rounded-lg border-2 bg-white hover:bg-gray-100 transition-all duration-300">
+                                <span class="font-bold mr-4">${String.fromCharCode(65 + index)}</span> ${option}
+                            </button>
+                        `,
+                          )
+                          .join("")}
+                    </div>
+                    <div id="feedback-container" class="flex justify-end items-center min-h-[80px]">
+                        <button id="submit-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed transition shadow-lg" disabled>
+                            Submit Answer
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+
+          document.getElementById("quiz-home-btn").onclick = () =>
+            navigateTo("home");
+          document.getElementById("submit-btn").onclick = handleSubmit;
+          document.querySelectorAll(".option-btn").forEach((btn, index) => {
+            btn.onclick = () =>
+              handleOptionSelect(question.options[index], btn);
+          });
+        }
+
+        function handleOptionSelect(option, buttonEl) {
+          selectedOption = option;
+          document.querySelectorAll(".option-btn").forEach((btn) => {
+            btn.classList.remove("bg-blue-200", "border-blue-400");
+          });
+          buttonEl.classList.add("bg-blue-200", "border-blue-400");
+          document.getElementById("submit-btn").disabled = false;
+        }
+
+        function handleSubmit() {
+          const question = currentQuizData.questions[currentQuestionIndex];
+          const isCorrect = selectedOption === question.answer;
+
+          document.querySelectorAll(".option-btn").forEach((btn) => {
+            btn.disabled = true;
+            btn.classList.remove("bg-blue-200", "border-blue-400");
+            const optionText = btn.textContent.slice(2).trim();
+            if (optionText === question.answer)
+              btn.className += " bg-green-200 border-green-500";
+            else if (optionText === selectedOption)
+              btn.className += " bg-red-200 border-red-500";
+          });
+
+          const feedbackContainer =
+            document.getElementById("feedback-container");
+          feedbackContainer.innerHTML = "";
+          const feedbackDiv = document.createElement("div");
+          feedbackDiv.className = "w-full";
+          const feedbackMessage = isCorrect
+            ? `<div class="p-4 rounded-lg bg-green-100 text-green-800">
+                    <div class="flex items-center">
+                        <div class="text-4xl mr-4">${question.animalEmoji}</div>
+                        <div><h3 class="font-bold text-lg">Correct!</h3>
+                        <p class="mt-1"><strong>Fun Fact:</strong> ${question.funFact}</p></div>
+                    </div>
+                </div>`
+            : `<div class="p-4 rounded-lg bg-red-100 text-red-800">
+                    <h3 class="font-bold text-lg">Not quite! 🤔</h3>
+                    <p class="mt-1"><strong>Hint:</strong> ${question.hint}</p>
+                </div>`;
+
+          const nextButtonText =
+            currentQuestionIndex < currentQuizData.questions.length - 1
+              ? "Next Question"
+              : "Finish Quiz";
+          feedbackDiv.innerHTML = `${feedbackMessage}
+            <button id="next-btn" class="w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg">${nextButtonText}</button>`;
+          feedbackContainer.appendChild(feedbackDiv);
+          document.getElementById("next-btn").onclick = handleNext;
+        }
+
+        function handleNext() {
+          currentQuestionIndex++;
+          if (currentQuestionIndex < currentQuizData.questions.length) {
+            loadQuestion();
+          } else {
+            showCompletionScreen();
+          }
+        }
+
+        function showCompletionScreen() {
+          const animalEmojis = currentQuizData.questions.map(
+            (q) => q.animalEmoji,
+          );
+          const paradeHTML = [...animalEmojis, ...animalEmojis]
+            .map((emoji) => `<div class="text-6xl mx-4">${emoji}</div>`)
+            .join("");
+
+          pages.completion.innerHTML = `
+            <div class="bg-white/90 p-8 rounded-2xl shadow-xl max-w-lg w-full">
+                <h1 class="text-4xl font-bold text-green-600 mb-2">Quiz Complete!</h1>
+                <p class="text-lg text-gray-700 mb-6">Great job exploring the Numbers Zoo!</p>
+                <div class="relative h-24 overflow-hidden mb-6">
+                    <div class="absolute flex animate-parade">${paradeHTML}</div>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="play-again-btn" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-lg">Play Again</button>
+                    <button id="completion-home-btn" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-lg">Back to Home</button>
+                </div>
+            </div>`;
+
+          document.getElementById("play-again-btn").onclick = () =>
+            startQuiz(currentQuizData);
+          document.getElementById("completion-home-btn").onclick = () =>
+            navigateTo("home");
+          navigateTo("completion");
+        }
+
+        function startQuiz(quizDataObject) {
+          currentQuizData = quizDataObject;
+          currentQuestionIndex = 0;
+          navigateTo("quiz");
+          loadQuestion();
+        }
+
+        startDefaultQuizBtn.onclick = () => startQuiz(defaultQuizData);
+        showCreatorBtn.onclick = () => navigateTo("creator");
+        cancelCreatorBtn.onclick = () => navigateTo("home");
+        generateQuizBtn.onclick = () => {
+          const customData = parseQuizText(quizTextInput.value);
+          if (customData) startQuiz(customData);
+        };
+      });
+    </script>
+  </body>
+</html>
